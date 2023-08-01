@@ -1,0 +1,33 @@
+#inputTarea {
+    display: inline;
+    width: 300px;
+}
+
+#Dashboard {
+    background: url(../../assets/img/fondo.jpg)no-repeat center center fixed;
+    height: 100vh;
+    background-size: cover;
+
+}
+
+#contTareas {
+    position: relative;
+    left: 40.2%;
+    width: 20%;
+}
+
+#contForm {
+    margin-top: 40px;
+    width: fit-content;
+    height: fit-content;
+    border-style: solid;
+    background-color: rgb(199, 255, 255);
+}
+
+.cursor {
+    cursor: pointer;
+}
+
+#liTarea {
+    margin-bottom: 3px;
+}

@@ -1,0 +1,7 @@
+<p>carta works!</p>
+<div *ngFor="let i of listUsuarios" class="card">
+    <label for="">{{i.nombre}}</label>
+    <label for="">{{i.apellido}}</label>
+    <label for="">{{i.localidad}}</label>
+    <app-modificar-datos [fatherName]="i.nombre"></app-modificar-datos>
+</div>

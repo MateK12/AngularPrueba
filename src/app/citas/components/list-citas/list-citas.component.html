@@ -1,0 +1,18 @@
+<div class="card">
+    <div *ngIf="listAppointment.length == 0" class="card-body">
+        <h3>There are no appoinments</h3>
+    </div>
+    <div *ngIf="listAppointment.length > 0" class="card-body">
+        <br>
+        <div *ngFor="let i of listAppointment index as index" class="card">
+            <div class="card-body">
+                <h3>{{i.name}}</h3>
+                <h4>{{i.date}}</h4>
+                <h5>{{i.time}}</h5>
+                <h6>{{i.syntoms}}</h6>
+                <button (click)="deleteAppointment(i.index)" class="btn btn-danger">X</button>
+            </div>
+        </div>
+        <br>
+    </div>
+</div>

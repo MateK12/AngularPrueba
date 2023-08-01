@@ -1,0 +1,94 @@
+<button nz-button [nzType]="'primary'" (click)="mostrar()"><span>Editar</span></button>
+<div id="mainContainer" class="container">
+    <nz-modal nzWidth=700 [(nzVisible)]="modalVisible" nzTitle="Editar usuario" (nzOnCancel)="handleCancel()"
+        (nzOnOk)="handleEditar()">
+        <ng-container *nzModalContent>
+            <div id="contForm" class="card">
+                <form action="">
+                    <nz-form-control>
+                        <nz-form-label nzFor="email">Tipo</nz-form-label>
+                        <nz-select [(ngModel)]="tipodocumento" (ngModelChange)="SetProvincia()"
+                            [ngModelOptions]="{standalone:true}" id="selectTipoDocumento" ngModel="lucy">
+                            <nz-option nzValue="DNI" nzLabel="DNI"></nz-option>
+                            <nz-option nzValue="CI" nzLabel="CI"></nz-option>
+                            <nz-option nzValue="CC" nzLabel="CC"></nz-option>
+                            <nz-option nzValue="CURP" nzLabel="CURP"></nz-option>
+                            <nz-option nzValue="SD" nzLabel="SD"></nz-option>
+                            <nz-option nzValue="PAS" nzLabel="PAS"></nz-option>
+                        </nz-select>
+                        <nz-form-label nzFor="email">Numero</nz-form-label>
+                        <input [(ngModel)]="numeroDocumento" (ngModelChange)="SetProvincia()"
+                            [ngModelOptions]="{standalone:true}" class="inputnumeros" placeholder="numero" type="number"
+                            id="email" />
+                    </nz-form-control>
+                    <br>
+                    <nz-form-control>
+                        <nz-form-label nzFor="email">Nombre/s</nz-form-label>
+                        <input [(ngModel)]="nombre" (ngModelChange)="SetProvincia()"
+                            [ngModelOptions]="{standalone:true}" type="text" id="email" placeholder={{fatherName}}
+                            placeholder={{fatherName}} />
+
+                        <nz-form-label class="labeljuntos" id="LabelApellido" nzFor="email">Apellidos/s</nz-form-label>
+                        <input [(ngModel)]="apellido" (ngModelChange)="SetProvincia()"
+                            [ngModelOptions]="{standalone:true}" type="text" id="email" />
+                        <nz-form-label class="labeljuntos" id="LabelApellido" nzFor="email">Sexo</nz-form-label>
+
+                        <nz-select [(ngModel)]="sexo" (ngModelChange)="SetProvincia()"
+                            [ngModelOptions]="{standalone:true}" id="selectSexo" ngModel="lucy">
+                            <nz-option nzValue="M" nzLabel="M"></nz-option>
+                            <nz-option nzValue="F" nzLabel="F"></nz-option>
+                            <nz-option nzValue="X" nzLabel="No binario"></nz-option>
+                            <nz-option nzValue="null" nzLabel="Prefiero no decirlo"></nz-option>
+                        </nz-select>
+                    </nz-form-control>
+                    <br>
+                    <nz-form-item>
+                        <nz-form-control>
+                            <nz-form-label nzFor="email">Direccion</nz-form-label>
+                            <input [(ngModel)]="direccion" (ngModelChange)="SetProvincia()"
+                                [ngModelOptions]="{standalone:true}" type="text" id="email" />
+
+                            <nz-form-label class="labeljuntos" nzFor="email">Localidad</nz-form-label>
+                            <input [(ngModel)]="localidad" (ngModelChange)="SetProvincia()"
+                                [ngModelOptions]="{standalone:true}" class="inputnormal" type="text" id="email" />
+                            <nz-form-label class="inputsJuntos" nzFor="email">Codigo postal</nz-form-label>
+                            <input [(ngModel)]="codigoPostal" (ngModelChange)="SetProvincia()"
+                                [ngModelOptions]="{standalone:true}" class="inputCodigoPostal" type="number"
+                                id="email" />
+
+                        </nz-form-control>
+                    </nz-form-item>
+                    <nz-form-control>
+                        <nz-form-label id="LabelApellido" nzFor="email">Provincias</nz-form-label>
+                        <nz-select [(ngModel)]="provincia" (ngModelChange)="SetProvincia()"
+                            [ngModelOptions]="{standalone:true}" id="selectSexo" ngModel="lucy">
+                            <nz-option *ngFor="let i of listaProvincias" nzValue={{i}} nzLabel={{i}}>{{i}}</nz-option>
+                        </nz-select>
+                        <div id="contdeptos" *ngIf="provincia=='Mendoza'" class="divdptos">
+                            <nz-form-label id="LabelApellido" nzFor="email">Departamento</nz-form-label>
+                            <nz-select [(ngModel)]="departamento" (ngModelChange)="SetProvincia()"
+                                [ngModelOptions]="{standalone:true}" id="selectSexo" ngModel="lucy">
+                                <nz-option *ngFor="let i of listaDepartamentos" nzValue={{i}}
+                                    nzLabel={{i}}>{{i}}</nz-option>
+                            </nz-select>
+                        </div>
+                    </nz-form-control>
+                    <br>
+                    <nz-form-control>
+                        <nz-form-label nzFor="email">Email</nz-form-label>
+                        <input [(ngModel)]="email" (ngModelChange)="SetProvincia()" [ngModelOptions]="{standalone:true}"
+                            class="inputnormal" type="email" id="email" />
+                        <nz-form-label class="inputsJuntos" nzFor="email">Numpero para llamadas</nz-form-label>
+                        <input [(ngModel)]="numeroLlamadas" (ngModelChange)="SetProvincia()"
+                            [ngModelOptions]="{standalone:true}" class="inputnumeros" type="number" id="email" />
+                        <nz-form-label class="inputsJuntos" nzFor="email">Numero para Whatsapp</nz-form-label>
+                        <input [(ngModel)]="numeroWapp" (ngModelChange)="SetProvincia()"
+                            [ngModelOptions]="{standalone:true}" class="inputnumeros" type="number" id="email" />
+                    </nz-form-control>
+
+                </form>
+            </div>
+
+        </ng-container>
+    </nz-modal>
+</div>

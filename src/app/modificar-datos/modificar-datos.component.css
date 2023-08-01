@@ -1,0 +1,50 @@
+#mainContainer {
+    align-items: center;
+}
+
+#selectTipoDocumento {
+    width: 90px;
+    margin-right: 20px;
+}
+
+#contForm {
+    align-items: center;
+    width: 100%;
+}
+
+.inputDireccion {
+    width: 30%;
+}
+
+#contdeptos {
+    display: inline;
+}
+
+.inputCodigoPostal {
+    width: 10%;
+}
+
+.labeljuntos {
+    margin-left: 20px;
+
+}
+
+.inputsJuntos {
+    margin-left: 20px;
+}
+
+#selectSexo {
+    width: 190px;
+}
+
+.inputnumeros {
+    width: 15%;
+}
+
+.inputnormal {
+    width: 20%;
+}
+
+.inputnombres {
+    width: 25%;
+}

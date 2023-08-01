@@ -1,0 +1,14 @@
+<div class="container">
+    <div class="card">
+        <form nz-form>
+            <nz-form-label nzFor="email">Editando: {{tareaEditandosee.nombre}} </nz-form-label>
+            <!-- usando prop del padre -->
+            <nz-form-item>
+                <nz-form-control [nzSpan]="14">
+                    <input value="" #nuevonombre nz-input name="email" type="email" id="email">
+                </nz-form-control>
+            </nz-form-item>
+            <button (click)="editar(nuevonombre.value)">Editar</button>
+        </form>
+    </div>
+</div>

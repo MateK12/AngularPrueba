@@ -1,0 +1,184 @@
+<form nz-form [formGroup]="formApplicantDetails" nzLayout="vertical" nzNoColon>
+    <nz-form-item>
+        <nz-row>
+
+            <nz-col class="marginSeparation" [nzSm]="3" [nzXs]="24">
+                <nz-form-label [nzSm]="6" nzFor="email">Tipo</nz-form-label>
+                <nz-select [(ngModel)]="selectedIdType" [ngModelOptions]="{standalone:true}" id="SelectType"
+                    ngModel="lucy">
+                    <nz-option *ngFor="let i of DocumentsTypes" nzValue={{i}} nzLabel={{i}}></nz-option>
+                </nz-select>
+            </nz-col>
+            <nz-col [nzSm]="9" [nzXs]="24">
+                <nz-form-control [nzSm]="24" [nzXs]="24" nzErrorTip="Por favor, ingrese un D.N.I para la busqueda.">
+                    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="dni" [nzTooltipTitle]="nzTooltipTitleMessege"
+                        [nzTooltipIcon]="captchaTooltipIcon">
+                        {{selectedIdType}}
+                    </nz-form-label>
+                    <div nz-row [nzGutter]="8">
+                        <div nz-col [nzSpan]="14">
+                            <input nz-input class="marginSeparation" formControlName="dni" id="dni" />
+                            <button [nzLoading]="isSearch" nz-button nzType="default" style="margin-right: 5px"
+                                (click)="searchClient()">
+                                <span nz-icon nzType="search" nzTheme="outline"></span>
+                            </button>
+                        </div>
+
+                    </div>
+                </nz-form-control>
+            </nz-col>
+        </nz-row>
+    </nz-form-item>
+    <ng-container *ngIf="visibleFormClient">
+        <nz-form-item>
+            <nz-row [nzGutter]="24">
+                <nz-col [nzSm]="5" [nzXs]="24">
+                    <nz-form-item>
+                        <nz-form-label>
+                            Nombre
+                        </nz-form-label>
+                        <nz-form-control nzErrorTip="Ingrese su direccion">
+                            <input nz-input />
+                        </nz-form-control>
+                    </nz-form-item>
+                </nz-col>
+                <nz-col [nzSm]="5" [nzXs]="24">
+                    <nz-form-item>
+                        <nz-form-label>
+                            Apellido
+                        </nz-form-label>
+                        <nz-form-control nzErrorTip="Ingrese su localidad">
+                            <input nz-input />
+                        </nz-form-control>
+                    </nz-form-item>
+                </nz-col>
+                <nz-col [nzSm]="4" [nzXs]="24">
+                    <nz-form-item>
+                        <nz-form-label>Sexo</nz-form-label>
+                        <nz-select [(ngModel)]="Genre" [ngModelOptions]="{standalone:true}" ngModel="lucy">
+                            <nz-option nzValue="M" nzLabel="M"></nz-option>
+                            <nz-option nzValue="F" nzLabel="F"></nz-option>
+                            <nz-option nzValue="X" nzLabel="No binario"></nz-option>
+                            <nz-option nzValue={{null}} nzLabel="Prefiero no decirlo"></nz-option>
+                        </nz-select>
+                    </nz-form-item>
+                </nz-col>
+            </nz-row>
+        </nz-form-item>
+
+        <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="firstName">
+                Télefono
+            </nz-form-label>
+            <nz-form-control [nzSm]="14" [nzXs]="24">
+                <input formControlName="phone" nz-input />
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item id="LocalidadZipCodeFormItem">
+            <nz-form-control class="FlexFormControl" [nzSm]="14" [nzXs]="24">
+                <label>Datos de domicilio</label>
+                <hr>
+                <nz-row [nzGutter]="24">
+                    <nz-col [nzSm]="12" [nzXs]="24">
+                        <nz-form-item>
+                            <nz-form-label>
+                                Provincia
+                            </nz-form-label>
+                            <nz-select [(ngModel)]="selectedProvice" [ngModelOptions]="{standalone:true}"
+                                ngModel="lucy">
+                                <nz-option *ngFor="let i of Provinces" nzValue={{i}} nzLabel={{i}}>{{i}}</nz-option>
+                            </nz-select>
+                        </nz-form-item>
+                    </nz-col>
+                    <nz-col [nzSm]="12" [nzXs]="24">
+                        <nz-form-item *ngIf="selectedProvice == 'Mendoza'">
+                            <nz-form-item>
+                                <nz-form-label>
+                                    Departamento
+                                </nz-form-label>
+                                <nz-select [(ngModel)]="selectedTown" [ngModelOptions]="{standalone:true}"
+                                    ngModel="lucy">
+                                    <nz-option *ngFor="let i of Towns" nzValue={{i}} nzLabel={{i}}>{{i}}</nz-option>
+                                </nz-select>
+                            </nz-form-item>
+                        </nz-form-item>
+                    </nz-col>
+                    <nz-col [nzSm]="12" [nzXs]="24">
+                        <nz-form-item>
+                            <nz-form-label>
+                                Direccion
+                            </nz-form-label>
+                            <nz-form-control nzErrorTip="Ingrese su direccion">
+                                <input id="addressInput" nz-input />
+                            </nz-form-control>
+                        </nz-form-item>
+                    </nz-col>
+                    <nz-col [nzSm]="6" [nzXs]="24">
+                        <nz-form-item>
+                            <nz-form-label>
+                                Localidad
+                            </nz-form-label>
+                            <nz-form-control nzErrorTip="Ingrese su localidad">
+                                <input nz-input />
+                            </nz-form-control>
+                        </nz-form-item>
+                    </nz-col>
+                    <nz-col [nzSm]="6" [nzXs]="24">
+                        <nz-form-item>
+                            <nz-form-label nzFor="license">
+                                Codigo postal
+                            </nz-form-label>
+                            <nz-form-control nzErrorTip="Debe ingresar la matrícula del profesional">
+                                <input type="text" nz-input />
+                            </nz-form-control>
+                        </nz-form-item>
+                    </nz-col>
+                </nz-row>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item id="LocalidadZipCodeFormItem">
+            <nz-form-control class="FlexFormControl" [nzSm]="14" [nzXs]="24">
+                <label>Datos de contacto</label>
+                <hr>
+                <nz-row [nzGutter]="24">
+                    <nz-col [nzSm]="12" [nzXs]="24">
+                        <nz-form-item>
+                            <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="firstName">
+                                Email
+                            </nz-form-label>
+                            <nz-form-control [nzSm]="24" [nzXs]="24">
+                                <input formControlName="email" nz-input />
+                            </nz-form-control>
+                        </nz-form-item>
+                    </nz-col>
+                    <nz-col [nzSm]="6" [nzXs]="24">
+                        <nz-form-item>
+                            <nz-form-label>
+                                Numero para llamadas
+                            </nz-form-label>
+                            <nz-form-control nzErrorTip="Ingrese su localidad">
+                                <input nz-input />
+                            </nz-form-control>
+                        </nz-form-item>
+                    </nz-col>
+                    <nz-col [nzSm]="6" [nzXs]="24">
+                        <nz-form-item>
+                            <nz-form-label nzFor="license">
+                                Numero para whatsapp
+                            </nz-form-label>
+                            <nz-form-control nzErrorTip="Debe ingresar la matrícula del profesional">
+                                <input type="textf" nz-input />
+                            </nz-form-control>
+                        </nz-form-item>
+                    </nz-col>
+                </nz-row>
+            </nz-form-control>
+        </nz-form-item>
+        <div class="buttons">
+            <button nz-button [nzLoading]="isSaving" nzType="primary" style="margin-right: 5px"
+                (click)="createOrUpdateClient()">
+                {{ textButtonClient }}
+            </button>
+        </div>
+    </ng-container>
+</form>
